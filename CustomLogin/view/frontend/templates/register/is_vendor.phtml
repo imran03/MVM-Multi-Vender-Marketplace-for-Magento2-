@@ -1,0 +1,25 @@
+<?php
+/**
+ *  $block Codilar\CustomLogin\Block\Registration
+ */
+
+?>
+<?php
+?>
+<?php echo $block->getBlockHtml('formkey')?>
+
+<div class="field shop_url">
+    <div class="control">
+    <label class="label" for="vendor"><span><?php echo __('Shop Url') ?></span></label>
+    <input type="text" name="shop_url"  />
+    </div>
+</div>
+<div class="field is_vendor">
+    <label class="label" for="vendor"><span><?php echo __('Want to become a vendor?') ?></span></label>
+    <div class="control">
+        <select name="is_vendor">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+</div>

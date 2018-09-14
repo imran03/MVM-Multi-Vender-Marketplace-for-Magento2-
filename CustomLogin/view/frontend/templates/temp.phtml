@@ -1,0 +1,11 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$customerSession = $objectManager->get('Magento\Customer\Model\Session');
+if($customerSession->isLoggedIn()):
+    ?>
+
+    <strong>Welcome: </strong>
+    <h1 class="page-title">
+        <span class="base" data-ui-id="page-title-wrapper"><?php echo($customerSession->getCustomer()->getName()); ?></span>
+    </h1>
+<?php endif; ?>

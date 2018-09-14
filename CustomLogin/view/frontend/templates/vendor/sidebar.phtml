@@ -1,0 +1,46 @@
+<?php
+/* @var $block \Codilar\CustomLogin\Block\Vendor\AccountDetailsSidebar */
+?>
+<?php
+$marketplaceVendorHelper = $this->helper('Codilar\CustomLogin\Helper\Vendor');
+?>
+<?php if ($marketplaceVendorHelper->isVendorInfoAllowedInSidebar()) : ?>
+
+<div class="block block-collapsible-nav">
+    <div class="title block-collapsible-nav-title">
+        <strong>Vendor Dashboard</strong>
+    </div>
+    <div class="content block-collapsible-nav-content" id="block-collapsible-nav">
+        <ul class="nav items">
+            <li class="nav item current">
+                <strong><?php /* @escapeNotVerified */ echo $block->getTitle(); ?></strong>
+            <span class="delimiter"></span>
+            </li>
+            <li class="nav item ">
+            <a href="<?php /* @escapeNotVerified */ echo $marketplaceVendorHelper->getVendorProfileUrl() ?>">Vendor Profile </a>
+            </li>
+            <li class="nav item ">
+                <a href="<?php /* @escapeNotVerified */ echo $marketplaceVendorHelper->getNewProductUrl() ?>">New Products </a>
+            </li>
+            <li class="nav item ">
+                <a href="<?php /* @escapeNotVerified */ echo $marketplaceVendorHelper->getVendorProductListUrl() ?>">Products List </a>
+            </li>
+            <li class="nav item ">
+                <a href="<?php /* @escapeNotVerified */ echo $marketplaceVendorHelper->getVendorProfileUrl() ?>">Transaction History </a>
+            </li>
+            <li class="nav item ">
+                <a href="<?php /* @escapeNotVerified */ echo $marketplaceVendorHelper->getOrderListUrl() ?>">Order List </a>
+            </li>
+            <li class="nav item ">
+                <a href="<?php /* @escapeNotVerified */ echo $marketplaceVendorHelper->getCommissionUrl() ?>">commission </a>
+            </li>
+            <li class="nav item ">
+                <a href="<?php /* @escapeNotVerified */ echo $marketplaceVendorHelper->getVendorHomepageUrl()?>">Vendor Homepage </a>
+            </li>
+        </ul>
+</div>
+</div>
+<?php endif; ?>
+
+
+
