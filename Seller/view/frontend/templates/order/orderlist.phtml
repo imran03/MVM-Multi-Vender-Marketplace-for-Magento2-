@@ -1,0 +1,128 @@
+<?php
+
+$takes=$block->getproductId();
+
+$vendorId=$block->getcustomerId();
+
+$orders=$block->getOrders();
+?>
+<table class="table table-bordered table-hover table-striped" style="table-layout: fixed">
+    <thead>
+    <tr>
+
+        <th>Order Detiles</th>
+        <th>Customer Details</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+<?php
+foreach ($orders as $order) {
+    foreach ( $order->getAllItems () as $item ) {
+        echo $order->getOrderId();
+
+
+    }
+
+}
+$count1=0;
+
+foreach ( $takes as $take => $value ) {
+    foreach ( $value as $v ) {
+        $pid = $v["product_id"];
+        if ($block->isVendorId ( $pid ) == $vendorId) {
+            $count1++;
+        }
+    }
+
+}
+
+echo $count1;
+
+
+$count=0;
+
+foreach ( $takes as $take => $value ) {
+    foreach ($value as $v) {
+        //print_r ( $v);
+        $id = $v["id"];
+        $name = $v["name"];
+        $pid = $v["product_id"];
+        $created = $v["created_at"];
+        $itemId = $v["itemId"];
+        $orderId = $v["orderId"];
+        $sku = $v["sku"];
+        $price = $v["price"];
+        $qty = $v["ordered Qty"];
+
+        if ($block->isVendorId($pid) == $vendorId) {
+            $count++;
+            echo "<tr>";
+            echo "<td>";
+            echo 'Order_Id : &nbsp;&nbsp;&nbsp;' . $id;
+            echo "<br/>";
+            echo "Name :&nbsp;&nbsp;&nbsp;" . $name;
+            echo "<br/>";
+            echo "Created_At :&nbsp;&nbsp;&nbsp;" . $created;
+            echo "<br/>";
+            echo "Product  :&nbsp;&nbsp;&nbsp;" . $pid;
+            echo "<br/>";
+            echo "Sku  :&nbsp;&nbsp;&nbsp;" . $sku;
+            echo "<br/>";
+            echo "orderId :&nbsp;&nbsp;&nbsp;" . $orderId;
+            echo "<br/>";
+            echo "itemId  :&nbsp;&nbsp;&nbsp;" . $itemId;
+            echo "<br/>";
+            echo "Price :&nbsp;&nbsp;&nbsp;" . $price;
+            echo "<br/>";
+            echo "Quantity :&nbsp;&nbsp;&nbsp;" . $qty;
+            echo "<br/>";
+            echo "</td>";
+            echo "<td>";
+            $order = $block->getOrderById($orderId);
+            echo 'Status : &nbsp;&nbsp;&nbsp;' . $order->getStatus();
+            echo "<br/>";
+            echo "Name :&nbsp;&nbsp;&nbsp;" . $order->getCustomerFirstname() . $order->getCustomerLastname();;
+            echo "<br/>";
+            echo "Email :&nbsp;&nbsp;&nbsp;" . $order->getCustomerEmail();;
+            echo "<br/>";
+            echo "GrandTotal :&nbsp;&nbsp;&nbsp;" . $order->getGrandTotal();
+            echo "<br/>";
+            echo "</td>";
+            echo "<td>";
+
+
+            if ($order->getStatus() == 'complete') {
+
+                echo "<H2 style='color:green'>COMPLETE</H2>";
+            } else {
+
+                echo " <button> <a href=" . $block->getUrl('seller/order/createinvoice', ['param' => $id]) . ">Create Invoice</button></a>";
+                echo "<br/>";
+
+                echo "<br/>";
+                echo "  <button> <a href=" . $block->getUrl('seller/order/ordership', ['param' => $id]) . ">Shippment</button></a>";
+            }
+            echo "</td>";
+            echo "</tr>";
+
+        }
+    }
+}
+echo "</table>";
+if ($block->getPagerHtml ()):
+    echo '<div class="order-products-toolbar toolbar bottom">';
+    echo $block->getPagerHtml ();
+    echo '</div>';
+endif;
+
+
+
+if($count==0)
+{
+    echo "No order to diplay";
+}
+
+?>
+
+
+

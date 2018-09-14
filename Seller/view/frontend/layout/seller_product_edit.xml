@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
+    <body>
+        <referenceContainer name="main" htmlTag="div" htmlClass="column main wk-mp-main"/>
+        <move element="page.main.title" destination="content" before="-"/>
+        <referenceBlock name="page.main.title" >
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">Edit Product</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Codilar\Seller\Block\Product\Edit" name="product_add" template="product/edit.phtml" cacheable="false" />
+        </referenceContainer>
+    </body>
+</page>

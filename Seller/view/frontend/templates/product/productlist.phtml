@@ -1,0 +1,58 @@
+<span class="delimiter"></span>
+
+
+<?php
+$products=$block->getProducts();
+$width = 200;
+$height = 300;
+$imageType = 'product_thumbnail_image';
+
+?>
+
+<?php if ($products && count($products) > 0): ?>
+<table border="1">
+        <tr>
+            <th><?= __("Id") ?></th>
+            <th><?= __("Thumbnails") ?></th>
+            <th><?= __("Name") ?></th>
+            <th><?= __("Sku") ?></th>
+            <th><?= __("Price") ?></th>
+            <th><?= __("Quantity") ?></th>
+            <th><?= __("Status") ?></th>
+            <th><?= __("action") ?></th>
+            <th><?= __("View Product") ?></th>
+
+        </tr>
+
+        <?php foreach ($products as $product): ?>
+            <tr>
+                <td><?= $product->getId() ;?></td>
+            <?php $image = $block->getImage($product, $imageType);
+            $url= $image->getImageUrl();
+            $_productStock = $block->getStockItem($product->getId());
+
+            ?>
+
+                <td><img src="<?= $url; ?> " alt="<?= $product->getName() ?> "  ></td>
+                <td><?= $product->getName() ?></td>
+                <td><?= $product->getSku() ?></td>
+                <td><?= $product->getPrice() ?></td>
+                <td><?= $_productStock->getQty() ?></td>
+                <td><?= $product->getStatus() ?></td>
+                <td>
+                    <a href="<?php echo $block->getUrl('seller/product/edit',['param'=>$product->getId()]);?>"
+                       class='btn btn-success left-margin'>Edit</a>
+
+                </td>
+                <td><a href="<?php echo $product->getProductUrl(); ?>">View</a> </td>
+            </tr>
+        <?php endforeach; ?>
+
+</table>
+    <?php if ($block->getPagerHtml()): ?>
+        <div class="order-products-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
+    <?php endif ?>
+<?php else: ?>
+<?= "No Product To Display";?>
+<?php endif; ?>
+

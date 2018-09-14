@@ -1,0 +1,23 @@
+<?php
+
+$commission=$block->getCommission();
+//var_dump ( $commission);
+?>
+
+Hello <?= $commission->getSellerName()?>
+<br/>
+<br/>
+Comission Percentage : <?= $commission->getCommissionRate()?>
+<br/>
+<br/>
+Total Sales : <?= $commission->getTotalSale() ?>
+<br/>
+<br/>
+Amount Recieved: <?= $commission->getReceivedAmount() ?>
+<br/>
+<br/>
+Comission Amount : <?= $commission->getCommissionAmount() ?>
+<br/>
+<br/>
+Amount to be Paid : <?= $commission->getAmountPaid() ?>
+

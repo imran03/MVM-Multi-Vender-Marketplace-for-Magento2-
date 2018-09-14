@@ -1,0 +1,36 @@
+<?php
+$profile=$block->getProfileData();
+$getimage=$block->getImagePath();
+?>
+<form action="<?= $block->getFormAction(); ?>" method="post" enctype='multipart/form-data'>
+        <input type="hidden" name="seller_id" value="<?= $block->getCustomerId(); ?>">
+        <label for="seller_name"> Vendor Name:</label>
+        <input type="text" name="seller_name" value="<?= $profile->getSellerName()?>">
+        <label for="seller_ShopUrl">Shop Url</label>
+        <input type="text" name="shop_url" value="<?= $profile->getShopUrl()?>" disabled>
+    <br/>
+    <br/>
+        <label for="shop_image"> Shop Image:</label>
+        <input type="file" name="shop_image">
+    <br/>
+    <img src="<?= $getimage.$profile->getShopImage()?>"  alt="shop_image">
+<br/>
+        <label for="aboutus"> About Us:</label>
+        <input type="text" name="about_us" value="<?= $profile->getAboutUs()?>">
+
+        <label for="paymentinformation"> Payment Information:</label>
+        <input type="text" name="payment_information" value="<?= $profile->getPaymentInformation()?>">
+
+
+        <label for="return_policy"> Return Policy:</label>
+        <input type="text" name="return_policy" value="<?= $profile->getReturnPolicy()?>">
+    <label for="shipping_policy"> Shipping Policy:</label>
+    <input type="text" name="shipping_policy" value="<?= $profile->getShippingPolicy()?>">
+
+        <label for="country">Country:</label>
+        <input type="text" name="country" value="<?= $profile->getCountry()?>">
+
+
+
+    <input type="submit" name="submit" >
+</form>

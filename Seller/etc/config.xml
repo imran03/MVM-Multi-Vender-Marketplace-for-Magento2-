@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <marketplace>
+            <layout_settings>
+                <is_separate_panel>0</is_separate_panel>
+            </layout_settings>
+            <product_settings>
+                <product_approval>1</product_approval>
+                <product_edit_approval>1</product_edit_approval>
+                <global_product_limit>5</global_product_limit>
+            </product_settings>
+
+        </marketplace>
+    </default>
+</config>

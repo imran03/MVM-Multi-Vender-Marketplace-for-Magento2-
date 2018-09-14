@@ -1,0 +1,108 @@
+<?php
+$seller=$block->sayHello();
+$image=$block->getImagePath();
+$products=$block->getProductData();
+$width = 200;
+$height = 300;
+$imageType = 'product_small_image';
+
+?>
+
+<style>
+    body {
+        background-color: rgba(173, 216, 230, 0);
+        background-image: url('<?=$image.$seller->getShopImage();?>');
+        background-repeat: no-repeat;
+        background-size: 100% 60%;
+        background-origin:content-box;
+        background-position:center center;
+    }
+
+    h1 {
+        color: #7c0080;
+        margin-left: 50%;
+    }
+
+    .square {
+        height: 150px;
+        width: 15%;
+        background-color: white;
+        margin-top: 20%;
+        margin-left: 10%;
+        border-style: outset;
+
+    }
+    .rectangle
+    {
+        height: 46px;
+        width: 15%;
+        margin-left: 10%;
+        background-color: black;
+        border-style: groove;
+        color:white;
+    }
+    .rectangle1
+    {
+        height: 46px;
+        width: 55%;
+        position: relative;
+        margin-top: 10%;
+        margin-left: 15%;
+        border-style: groove;
+        color:black;
+    }
+    .rectangle2
+    {
+        height: 137px;
+        width: 10%;
+        position: relative;
+        display: inline-block;
+        margin-left: 8%;
+        border-style: groove;
+        color:black;
+    }
+</style>
+
+<div class="square"> </div>
+<div class="rectangle"><strong  style="text-align: right;"><?=$seller->getSellerName()?></strong>
+    <br/>
+    <?=$seller->getCountry()?> </div >
+
+<br/>
+<br/>
+<br/>
+
+
+<h3>About Us</h3>
+<div class="rectangle1">
+<?=$seller->getAboutUs()?>
+</div>
+
+
+
+
+
+<?php foreach ($products as $product): ?>
+
+<div class="rectangle2">
+<?php $image = $block->getImage($product, $imageType);
+            $url= $image->getImageUrl();?>
+    <img src="<?= $url; ?> " alt="<?= $product->getName() ?> "  >
+    <?= $product->getName() ?>
+    <?= $product->getPrice() ?>
+</div>
+<?php endforeach; ?>
+<br/>
+<button><a href="<?=$block->getUrl('');?>">Explore More</a></button>
+
+<br/>
+<br/>
+<br/>
+<h3>Return Policy</h3>
+<div class="rectangle1">
+    <?=$seller->getReturnPolicy()?></div>
+<h3>Shipping Policy</h3>
+<div class="rectangle1">
+    <?=$seller->getShippingPolicy()?></div>
+
+

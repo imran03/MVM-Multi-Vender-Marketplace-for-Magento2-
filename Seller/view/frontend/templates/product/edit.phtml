@@ -1,0 +1,83 @@
+<?php
+
+$productStock = $block->getStockItem();
+$id=$block->getproductId();
+$product=$block->getLoadProduct($id);
+$pic=$block->getImagePath();
+$width = 200;
+$height = 300;
+$imageType = 'product_thumbnail_image';
+?>
+
+<fieldset form="form1">
+    <legend>Add Product:</legend>
+    <form action="<?php echo $block->getFormAction() ?>" method="post" enctype="multipart/form-data">
+
+        <input type="hidden" name="id" value="<?=$id?>" >
+        <label for="product_enable">Product Enable</label>
+        <select name="enable">
+            <option value="1" selected>Enable</option>
+            <option value="0">Disable</option>
+        </select>
+
+        <label for="product_name">Product Name</label>
+        <input name="product_name" id="product_name" value="<?=$product->getName() ?> " type="text" >
+
+        <label for="sku">Sku</label>
+        <input name="sku" id="sku" value="<?=$product->getSku() ?>" type="text" >
+
+        <label for="short_description">Short Description</label>
+        <input name="short_description" id="description" value="<?=$product->getDescription() ?>" type="text"  >
+        <label for="description">Description</label>
+        <textarea name="description" rows="4" cols="20" maxlength="20" ></textarea>
+        <br />
+        <br />
+
+        <br/>
+        <label for="category">Category</label>
+        <br/>
+        <br />
+        <?php $categories = $block->getStoreCategories (); ?>
+        <?php foreach ( $categories as $category ) : ?>
+            <label for="category"><?= $category->getName (); ?></label>
+            <input type="checkbox" value="<?= $category->getId () ?>" name="category[]">
+            <?php
+            $subCategories = $block->getChildCategories ( $category->getId () ); ?>
+            <br/>
+            <?php foreach ( $subCategories as $subCategory ) : ?>
+
+                <label for="category"><?=  $subCategory->getName (); ?></label>
+                <input type="checkbox" value="<?= $subCategory->getId () ?>" name="subcategory[]" >
+                <br />
+            <?php endforeach; ?>
+        <?php endforeach; ?>
+        <br/>
+        <br/>
+        <label for="price">Price</label>
+        <input name="price" id="price" value="<?=$product->getPrice() ?>" type="text"  >
+        <br />
+        <br />
+
+
+        <?php $image = $block->getImage($product, $imageType);
+            $url= $image->getImageUrl();?>
+
+
+        <img src="<?='http://127.0.0.1/magento/pub/media/catalog/product'.$product->getSmallImage() ?>" alt="small image">
+
+        <label for="add_image">Add Image</label>
+        <input name="test_image" type="file"  />
+        <br />
+        <br />
+        <label for="quantity">Quantity</label>
+        <input name="quantity" id="quantity" type="text"  required >
+        <br />
+        <input type="submit" value="Edit">
+    </form>
+</fieldset>
+<?php
+?>
+<?php
+
+
+

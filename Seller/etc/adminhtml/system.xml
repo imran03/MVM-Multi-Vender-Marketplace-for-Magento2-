@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="Marketplace" translate="label" sortOrder="10">
+            <label>Codilar MVM</label>
+        </tab>
+        <section id="marketplace" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Marketplace</label>
+            <!-- Assign section to tab -->
+            <tab>Marketplace</tab>
+            <resource>Codilar_Seller::config_marketplace</resource>
+
+            <group id="layout_settings" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Seller Dashboard Layout Settings</label>
+                <field id="is_separate_panel" translate="label comment" sortOrder="3" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allow seller separate dashboard</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+            </group>
+
+        </section>
+    </system>
+</config>
